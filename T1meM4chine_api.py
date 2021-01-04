@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 import re
 import time
 from datetime import datetime,timedelta
-import pprint
 
 def convertToLocaltime(t):
     return str(datetime.strptime(t[:19],"%Y-%m-%dT%H:%M:%S")+timedelta(hours=8))
