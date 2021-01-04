@@ -83,7 +83,7 @@ if __name__=='__main__':
 
   是无法连接raw.githubusercontent.com引起的，建议按照[Failed to connect to raw.githubusercontent.com port 443: Connection refused - 远近啊 - 博客园](https://www.cnblogs.com/Dylansuns/p/12309847.html)中的方法处理。
 
-- `requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))`：
+- 报错`requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))`：
 
   请求频繁，稍后再运行脚本即可。
 
