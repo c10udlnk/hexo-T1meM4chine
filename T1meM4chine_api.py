@@ -38,8 +38,8 @@ def convertToLocaltime(t):
 
 def parseHomePage(url):
     soup = BeautifulSoup(getHtmlSC(url), "lxml")
-    key = ["Blog_subtitle", "Blog_title", "Blog_author", "Blog_description"]
-    value = soup.title.string.split(" | ") + [soup.find(attrs = {"name":"author"})["content"], soup.find(attrs = {"name":"description"})["content"]]
+    key = ["Blog_title", "Blog_author", "Blog_description"]
+    value = [soup.title.string, soup.find(attrs = {"name":"author"})["content"], soup.find(attrs = {"name":"description"})["content"]]
     return dict(zip(key, value))
 
 def parseAtomXML(url):
