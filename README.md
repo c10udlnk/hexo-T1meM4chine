@@ -8,9 +8,11 @@
 
 于是决定自己手撸一个，~~满足一下个人需求（划~~
 
-这是一个使用python制作的小脚本，旨在**为个人hexo博客生成上一年的年度数据报告**（划重点，一定要过了这一年才可以哦）。
+这是一个使用python制作的小脚本，旨在**为个人hexo博客生成某一年的年度数据报告**。
 
 目前只用了自己的博客来测试，不知道兼容性如何，如有bug欢迎提issue！0v0
+
+鲁棒性不强，还请各位轻点打 >x<
 
 ## Usage
 
@@ -51,35 +53,21 @@ python（最好3.6+）
 
 ### 使用
 
-将`T1meM4chine_main.py`中的my_name改成自己的用户名以后，运行即可。
-
-```python
-from T1meM4chine_api import *
-import time
-
-if __name__=='__main__':
-    # -=-=-=将my_name修改为你的用户名-=-=-=
-    my_name="c10udlnk"
-    # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-    my_hexo_repo="https://github.com/"+my_name+"/"+my_name+".github.io"
-    my_hexo_branch="/master"
-    atom_link=my_hexo_repo+"/raw"+my_hexo_branch+"/atom.xml"
-    api_header="https://api.github.com/repos/"+my_name+"/"+my_name+".github.io"
-    homepage_info,all_page_info=parseAtomXML(atom_link)
-    year=str(int(time.asctime(time.localtime())[-4:])-1)
-    homepage_info.update(parseHeader(api_header))
-    makeAnnualReview(homepage_info,all_page_info,year)
-```
+运行`T1meM4chine_main.py`，填入github用户名和想查看的年份即可。
 
 ## Show
 
-![image-20210104162551015](README/image-20210104162551015.png)
+![image-20211226211010819](README/image-20211226211010819.png)
 
-![image-20210104162531607](README/image-20210104162531607.png)
+![image-20211226211049527](README/image-20211226211049527.png)
+
+![image-20211226211106072](README/image-20211226211106072.png)
 
 ## Q&A
 
-- 报错`requests.exceptions.ConnectionError: ......[Errno 111] Connection refused'`：
+- 如果发现篇数过少，请检查**hexo-generator-feed**插件设置中的`limit`，默认只收录20篇，需要调整请在`_config.yml`中设置`limit: 0`来禁用收录限制。
+
+- 报错`requests.exceptions.ConnectionError: HTTPSConnectionPool(host='raw.githubusercontent.com', port=443): Max retries exceeded with url: ......(Caused by NewConnectionError('......: Failed to establish a new connection: [Errno 111] Connection refused',))`：
 
   是无法连接raw.githubusercontent.com引起的，建议按照[Failed to connect to raw.githubusercontent.com port 443: Connection refused - 远近啊 - 博客园](https://www.cnblogs.com/Dylansuns/p/12309847.html)中的方法处理。
 
@@ -87,10 +75,15 @@ if __name__=='__main__':
 
   请求频繁，稍后再运行脚本即可。
 
+- 报错`requests.exceptions.ConnectionError: HTTPSConnectionPool(host='......', port=443)`：
+
+  请求频繁，稍后再运行脚本即可。
+
 - 如有其他问题，欢迎提issue！
 
 ## TODO
 
+- 拓展使用范围，本代码仅针对Melody主题（需要用到本主题特定的class等）。
 - 增加阅读量总结，拟使用[不蒜子](http://ibruce.info/2015/04/04/busuanzi/)数据，因为要用到[Selenium](https://zhuanlan.zhihu.com/p/111859925)才能获取到阅读量的数值，故暂时没做。
 - 字数统计不够精确，后续将通过改造wordcount插件来记录字数精确值（而不是四舍五入到k）。
 - 将通过爬取commits数据进行推送连续天数的统计和深夜爆肝统计，还要过滤hexo一些渲染设置的改动，可能是一项大工程。
@@ -99,7 +92,19 @@ if __name__=='__main__':
 
 ## Update log
 
+### v2.0
+
+- 大规模重构代码，对一些不合代码规范的部分进行了修改。
+
+- 给文字报告刷上颜色啦~
+
+- 现在可以对年度总结的年份进行指定了，同时适配年末总结选手 && 年初总结选手。
+
+- TODO一项没做，别期待了（逃
+
+  ~~（真就年更项目呗）~~
+
 ### v1.0
 
-从0到1撸了个大概能用的原型，功能就是这样没什么好说的啦~
+- 从0到1撸了个大概能用的原型，功能就是这样没什么好说的啦~
 
