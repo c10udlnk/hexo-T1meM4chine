@@ -65,17 +65,25 @@ python（最好3.6+）
 
 ## Q&A
 
-- 如果发现篇数过少，请检查**hexo-generator-feed**插件设置中的`limit`，默认只收录20篇，需要调整请在`_config.yml`中设置`limit: 0`来禁用收录限制。
+- 发现篇数过少：
+
+  请检查**hexo-generator-feed**插件设置中的`limit`，默认只收录20篇，需要调整请在`_config.yml`中设置`limit: 0`来禁用收录限制。
+
+- 颜色出现乱码：
+
+  ![image-20211227093518228](README/image-20211227093518228.png)
+
+  经过测试，目前Linux环境下是完全没问题的~~（别用破windows啦）~~；Windows环境下wsl是没问题的，在windows terminal中打开cmd或者powershell来跑脚本也是没问题的。
+
+  出现问题的情况是在**直接启动cmd或者powershell（而不是经由windows terminal打开）**的时候。
+
+  解决方法：**用Linux！**用wsl！实在不行搞个windows terminal吧（逃
 
 - 报错`requests.exceptions.ConnectionError: HTTPSConnectionPool(host='raw.githubusercontent.com', port=443): Max retries exceeded with url: ......(Caused by NewConnectionError('......: Failed to establish a new connection: [Errno 111] Connection refused',))`：
 
-  是无法连接raw.githubusercontent.com引起的，建议按照[Failed to connect to raw.githubusercontent.com port 443: Connection refused - 远近啊 - 博客园](https://www.cnblogs.com/Dylansuns/p/12309847.html)中的方法处理。
+  是（偶尔）无法连接raw.githubusercontent.com引起的，建议按照[Failed to connect to raw.githubusercontent.com port 443: Connection refused - 远近啊 - 博客园](https://www.cnblogs.com/Dylansuns/p/12309847.html)中的方法处理。
 
 - 报错`requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))`：
-
-  请求频繁，稍后再运行脚本即可。
-
-- 报错`requests.exceptions.ConnectionError: HTTPSConnectionPool(host='......', port=443)`：
 
   请求频繁，稍后再运行脚本即可。
 
@@ -84,6 +92,7 @@ python（最好3.6+）
 ## TODO
 
 - 拓展使用范围，本代码仅针对Melody主题（需要用到本主题特定的class等）。
+- 添加对cmd的上色支持。
 - 增加阅读量总结，拟使用[不蒜子](http://ibruce.info/2015/04/04/busuanzi/)数据，因为要用到[Selenium](https://zhuanlan.zhihu.com/p/111859925)才能获取到阅读量的数值，故暂时没做。
 - 字数统计不够精确，后续将通过改造wordcount插件来记录字数精确值（而不是四舍五入到k）。
 - 将通过爬取commits数据进行推送连续天数的统计和深夜爆肝统计，还要过滤hexo一些渲染设置的改动，可能是一项大工程。
@@ -91,6 +100,10 @@ python（最好3.6+）
 - 处理大量数据时速度较慢，毕竟爬github，后续看看怎么加速一下。
 
 ## Update log
+
+### v2.02
+
+- Blog_title改为从"site-title"里抓取，而不是网页标题。~~（考虑到有些人的网页标题并不是站名）~~
 
 ### v2.01
 
