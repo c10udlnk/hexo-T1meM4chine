@@ -91,7 +91,7 @@ python（最好3.6+）
 
 ## TODO
 
-- 拓展使用范围，本代码仅针对Melody主题（需要用到本主题特定的class等）。
+- 拓展使用范围，本代码仅针对Melody主题（需要用到本主题特定的class等），经测试Butterfly主题同样适配。
 - 添加对cmd的上色支持。
 - 增加阅读量总结，拟使用[不蒜子](http://ibruce.info/2015/04/04/busuanzi/)数据，因为要用到[Selenium](https://zhuanlan.zhihu.com/p/111859925)才能获取到阅读量的数值，故暂时没做。
 - 字数统计不够精确，后续将通过改造wordcount插件来记录字数精确值（而不是四舍五入到k）。
